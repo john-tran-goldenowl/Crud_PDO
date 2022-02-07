@@ -14,11 +14,14 @@ class account {
             return $r;
         }
         public function insert($acc_name,$amount){
+            $data = [
+                'acc_name' => $acc_name,
+                'amount' => $amount,
+            ];
             $db = new connect();
-            $strQuery = "INSERT INTO account (acc_name, amount)
-            VALUES ('".$acc_name."','".$amount."')";
-            $r = $db->exec($strQuery);
-            return $r;
+            $sql = "INSERT INTO users (acc_name,amount) VALUES (:acc_name, :amount)";
+            $stmt= $db->prepare($sql);
+            $stmt->execute($data);
         }
         public function getOneAcc($id){
             $db = new connect();
@@ -27,12 +30,18 @@ class account {
             return $r;
         }
         public function update($acc_name,$amount,$id){
+            $data = [
+                'id' => $id,
+                'acc_name' => $acc_name,
+                'amount' => $amount,
+            ];
             $db = new connect();
-            $strQuery = "UPDATE account
-            SET acc_name = '$acc_name', amount = '$amount'
-            WHERE id=".$id;
-            $r = $db->exec($strQuery);
-            return $r;
+            $sql = "UPDATE account
+            SET acc_name = :acc_name, amount = :amount
+            WHERE id = :id";
+            $stmt= $db->prepare($sql);
+            $stmt->execute($data);
+            $db->close();
         }
         
 

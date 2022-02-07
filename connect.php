@@ -18,9 +18,6 @@
             $result = $results ->fetch();
             return $result;
         }
-        public function exec($query){
-            $result = $this ->db->exec($query);
-            return $result;
-        }
+     
     } 
 ?>
