@@ -19,8 +19,8 @@ class account {
                 'amount' => $amount,
             ];
             $db = new connect();
-            $sql = "INSERT INTO users (acc_name,amount) VALUES (:acc_name, :amount)";
-            $stmt= $db->prepare($sql);
+            $sql = "INSERT INTO account (acc_name,amount) VALUES (:acc_name, :amount)";
+            $stmt= $db->db->prepare($sql);
             $stmt->execute($data);
         }
         public function getOneAcc($id){
@@ -39,9 +39,8 @@ class account {
             $sql = "UPDATE account
             SET acc_name = :acc_name, amount = :amount
             WHERE id = :id";
-            $stmt= $db->prepare($sql);
+            $stmt= $db->db->prepare($sql);
             $stmt->execute($data);
-            $db->close();
         }
         
 

@@ -1,6 +1,6 @@
 <?php 
     class connect {
-        //phương thức khởi tạo 
+        public $db = null;
         function __construct () {
             $dsn = "mysql:host=localhost;dbname=test";
             $user = 'root';
@@ -9,7 +9,7 @@
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $this->db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         }
-      public  function getList ($select){
+       public function getList ($select){
             $result = $this -> db -> query($select);
             return $result;
         }
